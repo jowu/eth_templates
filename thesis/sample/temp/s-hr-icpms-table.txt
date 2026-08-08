@@ -1,0 +1,17 @@
+\begin{tabular}{lrrr}
+\toprule
+\textbf{Sample} & \textbf{S [ppm]} & \textbf{TOC [ppm]} & \textbf{S/HR} \\
+\midrule
+JWL 1 & 1030 $\pm$ 31 & 1900 & 0.54 \\
+JWL 2 & 90 $\pm$ 3 & 3400 & 0.03 \\
+JWL 3 & 90 $\pm$ 3 & 1500 & 0.06 \\
+JWL 4 & 180 $\pm$ 5 & 1700 & 0.11 \\
+JWL 5 & 80 $\pm$ 2 & --- & --- \\
+JWL 6 & 920 $\pm$ 28 & 5000 & 0.18 \\
+JWL 7 & 140 $\pm$ 4 & 2400 & 0.06 \\
+JWL 8 & 1080 $\pm$ 32 & --- & --- \\
+JWL 9 & 1120 $\pm$ 34 & 4200 & 0.27 \\
+JWL 11 & 1090 $\pm$ 33 & 4000 & 0.27 \\
+JWL 12 & 1140 $\pm$ 34 & 4300 & 0.27 \\
+\bottomrule
+\end{tabular}

@@ -1,0 +1,18 @@
+\begin{tabular}{lrrrr}
+\toprule
+\textbf{Sample} & \textbf{Sr [ppm]} & \textbf{Ba [ppm]} & \textbf{Sr/Ba} \\
+\midrule
+JWL 1 & 475 $\pm$ 34 & 114 $\pm$ 16 & 4.17 \\
+JWL 2 & 432 $\pm$ 31 & 290 $\pm$ 40 & 1.49 \\
+JWL 3 & 434 $\pm$ 31 & 274 $\pm$ 38 & 1.58 \\
+JWL 4 & 277 $\pm$ 20 & 224 $\pm$ 31 & 1.24 \\
+JWL 5 & 200 $\pm$ 14 & 134 $\pm$ 18 & 1.49 \\
+JWL 6 & 392 $\pm$ 28 & 335 $\pm$ 46 & 1.17 \\
+JWL 7 & 378 $\pm$ 27 & 101 $\pm$ 14 & 3.72 \\
+JWL 8 & 449 $\pm$ 32 & 231 $\pm$ 32 & 1.94 \\
+JWL 9 & 439 $\pm$ 31 & 280 $\pm$ 39 & 1.57 \\
+JWL 11 & 538 $\pm$ 38 & 295 $\pm$ 41 & 1.83 \\
+JWL 12 & 497 $\pm$ 35 & 244 $\pm$ 34 & 2.03 \\
+BCR2 & 444 $\pm$ 32 & 683 $\pm$ 94 & 0.65 \\
+\bottomrule
+\end{tabular}

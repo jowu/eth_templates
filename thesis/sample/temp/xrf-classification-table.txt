@@ -1,0 +1,19 @@
+\begin{tabular}{lc|cc|cc}
+\toprule
+\multicolumn{2}{c}{} & \multicolumn{4}{c}{XRF Classification} \\
+\multicolumn{2}{c}{} & \multicolumn{2}{c}{Sr/Ba} & \multicolumn{2}{c}{S/TOC} \\
+Sample & Map & (Wei \& Algeo, 2020) & Best fit & (Wei \& Algeo, 2020) & Best fit \\
+\midrule
+JWL 1 & F & M & M & B & M \\
+JWL 11 & M & M & M & B & M \\
+JWL 12 & M & M & M & B & M \\
+JWL 2 & F & M & M & F & F \\
+JWL 3 & F & M & M & F & F \\
+JWL 4 & F & M & F & F & F \\
+JWL 5 & F & M & F & -- & -- \\
+JWL 6 & M & M & F & F & F \\
+JWL 7 & F & -- & -- & F & F \\
+JWL 8 & M & M & M & -- & -- \\
+JWL 9 & M & M & M & B & M \\
+\bottomrule
+\end{tabular}

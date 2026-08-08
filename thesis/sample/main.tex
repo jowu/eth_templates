@@ -1,0 +1,141 @@
+\documentclass[bscthesis]{thesis}
+% \usepackage{multirow}
+\usepackage{subfigure}  % replace with subcaption or subfig
+% \usepackage{mathtools}
+% \usepackage{pdflscape}            
+% \usepackage{afterpage}
+\usepackage[english]{babel}
+\usepackage{csquotes}
+\usepackage{gensymb}
+
+\usepackage{catchfile}  % to support clever data includes
+%% Import data files like this:
+%% \CatchFileDef{\filecontent}{my_text_file.txt}{\endlinechar=-1} % Load file into \filecontent
+\usepackage{caption} 
+\captionsetup{font=small, labelfont={bf}, width=0.9\textwidth}
+
+\usepackage{setspace}
+\usepackage[style=apa, backend=biber]{biblatex}
+\addbibresource{bib.bib}
+
+\usepackage{hyperref}
+\hypersetup{colorlinks=false, pdfborder={0 0 0}}
+% utilities for proof reading and annotating
+% \usepackage{lineno}
+
+\usepackage{xstring}    
+\usepackage{xspace}
+% This package must be loaded last forever.
+\usepackage{cleveref}
+
+\input{commands.tex}
+
+\newcommand{\ambif}{NH$_4$HF$_2$}
+\newcommand{\TODO}{\colorbox{yellow}{TODO\@}}
+\newcommand{\XRF}{\acronym{XRF}{X-ray fluorescence}\xspace}
+\newcommand{\ICPMS}{\acronym{ICPMS}{inductively coupled plasma mass spectrometry}\xspace}
+\newcommand{\TOC}{\acronym{TOC}{total organic carbon}\xspace}
+\newcommand{\SMB}{\acronym{SMB}{Swiss Molasse Basin}\xspace}
+\newcommand{\OSM}{\acronym{OSM}{Upper Freshwater Molasse}\xspace}
+\newcommand{\USM}{\acronym{USM}{Lower Freshwater Molasse}\xspace}
+\newcommand{\UMM}{\acronym{UMM}{Lower Marine Molasse}\xspace}
+\newcommand{\ETH}{\acronym{ETH}{Swiss Federal Institute of Technology Zurich}\xspace}
+\newcommand{\TDS}{\acronym{TDS}{total dissolved solids}\xspace}
+\newcommand{\ROC}{\acronym{ROC}{Receiver Operating Characteristic}\xspace}
+
+\frenchspacing
+
+% \title{A Geochemical Method to Characterize the Depositional Environment of Fine Sediments}
+\title{Geochemical Proxies for Depositional Environments in the Subalpine Molasse}
+\author{Dr. Jochen \textsc{Wuttke}}
+
+\mainadvisor{Prof.\ Dr.\ Vincenzo \textsc{Picotti}}{Institute for Geology}
+\coexaminer{Dr.\ Gregory \textsc{De Souza}}{Institute for Geochemistry and Petrology}
+
+\Day{30}
+\Month{06}
+\Year{2026}
+\place{Zurich}
+\studentid{05-981-717}
+
+\begin{document}
+\maketitle
+
+\onehalfspace  % 1.5 linespace as required
+\frontmatter
+
+\begin{abstract}
+Sequence stratigraphy and reconstructions of paleo-environments and tectonic uplift rely on the 
+characterization
+of the depositional environment of sediments. This characterization of fine-grained sediments is difficult
+with field methods. Because salinity of formation waters is a good proxy for
+the classification into marine and freshwater sediments, but is difficult to measure directly, 
+several trace element concentrations and ratios have been proposed as proxies for salinity. 
+
+We evaluate  X-ray fluorescence (XRF) and  inductively coupled plasma mass spectrometry (ICPMS) for
+measuring Cl/Br, Sr/Ba and S/total organic carbon (TOC), and compare our results with threshold ratios from
+earlier studies. Approximate best fit threshold ratios for our data are computed using the 
+Receiver Operating Characteristic (ROC) curve algorithm. 
+
+As a case study, we collected samples in the Swiss Molasse Basin (SMB) from units that are mapped as 
+Lower Freshwater Molasse (USM) and Lower Marine Molasse (UMM) sediments. 
+The baseline depositional environment classification is derived from this mapping.
+
+Data from the uncalibrated XRF instrument proved unusable. 
+The accuracy of the ICPMS 
+measurement was verified by using the standards BCR-2 and BHVO-2, which confirm that these measurements
+are accurate. 
+None of the methods yielded reliable measurements for the halogens Cl and Br. 
+
+The data show that for our samples the Sr/Ba ratio is not a good predictor for the depositional
+environment, as the data points cluster close together, 
+and the best fit threshold produces several incorrect classifications. 
+With S/TOC, the data points form two clusters that are easily distinguished by
+a threshold ratio, especially when calibrated to local conditions.
+
+The calibrated data confirm that most samples match their classification on the geological map, but
+the sample JWL~1 shows strong marine indicators, despite being from a unit mapped as freshwater.
+This result shows that when calibrated, these ratios can be used to quickly classify the depositional
+environment of fine sediments, and thus strengthen the sequence-stratigraphic data available. This approach is 
+particularly useful in areas that are strongly tectonically deformed, where it can identify marker horizons 
+to correlate disconnected outcrops.
+
+\end{abstract}
+
+\tableofcontents 
+
+\mainmatter
+\fancyhead{}
+\fancyhead[LE, RO]{\thepage}
+\fancyhead[RE]{\leftmark}
+\fancyhead[LO]{\rightmark}
+
+\input{introduction.tex}
+\input{methods.tex}
+\input{results.tex}
+\input{discussion.tex}
+\input{conclusion.tex}
+
+\input{appendix.tex}
+
+\backmatter
+
+\addcontentsline{toc}{chapter}{\bibname}
+\printbibliography
+
+\cleardoublepage
+
+\begin{acknowledgements}
+\addcontentsline{toc}{chapter}{Acknowledgements}
+This thesis would not have been possible without the help of many people.
+I would like to thank my advisor Vincenzo Picotti for giving this research
+direction and his instruction in the field. 
+My co-advisor Gregory De Souza for his guidance around all things chemical and frequent input
+on research methodology and the scientific standards one should aspire to.
+Corey Archer, Negar Haghipour and Natalie Seibel for their patient instruction and assistance in sample preparation
+and measurement execution in the various lab methods we used.
+
+Thank you!
+\end{acknowledgements}
+
+\end{document}

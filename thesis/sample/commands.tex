@@ -1,0 +1,63 @@
+% Custom macro definitions for thesis
+% For debugging final edits only. This adds a highlight box around the first
+% reference to figures, tables, etc. 
+% Disable for print/submission versions.
+% \makeatletter
+% %Redefine \cref so that it will make a margin note if the passed label is referenced for the first time.
+% \let\oldcref=\cref
+% \def\cref#1{%
+%     \IfSubStr{#1}{,}{\oldcref{#1}}{%
+%     %check if the label has already been referenced.
+%     \ifcsname figure@#1\endcsname
+%         %already exists...therefore not the first citation
+%         \oldcref{#1}%
+%     \else
+%         \colorbox{yellow}{\oldcref{#1}}%}
+%         \expandafter\gdef\csname figure@#1\endcsname{}%first citation...with this defined, will not underline again
+%     \fi
+%     }}
+% \makeatother
+
+% \makeatletter
+% %Redefine \cref so that it will make a margin note if the passed label is referenced for the first time.
+% \let\Oldcref=\Cref
+% \def\Cref#1{%
+%     \IfSubStr{#1}{,}{\Oldcref{#1}}{%
+%     %check if the label has already been referenced.
+%     \ifcsname figure@#1\endcsname
+%         %already exists...therefore not the first citation
+%         \Oldcref{#1}%
+%     \else
+%         \colorbox{yellow}{\Oldcref{#1}}%}
+%         \expandafter\gdef\csname figure@#1\endcsname{}%first citation...with this defined, will not underline again
+%     \fi
+%     }}
+% \makeatother
+
+\def\acro#1{%
+    %\IfSubStr{#1}{,}{\oldcref{#1}}{%
+    %check if the label has already been referenced.
+    \ifcsname acronym@#1\endcsname
+        %already exists...therefore not the first citation
+        #1%
+    \else
+        #1%
+        %\colorbox{yellow}{#1}%}
+        \expandafter\gdef\csname acronym@#1\endcsname{}%first citation...with this defined, will not underline again
+    \fi
+    }%}
+\makeatother
+
+\def\acronym#1#2{%
+    %\IfSubStr{#1}{,}{\oldcref{#1}}{%
+    %check if the label has already been referenced.
+    \ifcsname acronym@#1\endcsname
+        %already exists...therefore not the first citation
+        #1%
+    \else
+        #2 (#1)%
+        %#2 (\colorbox{yellow}{#1})%}
+        \expandafter\gdef\csname acronym@#1\endcsname{}%first citation...with this defined, will not underline again
+    \fi
+    }%}
+\makeatother
