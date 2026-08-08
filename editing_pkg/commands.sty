@@ -1,0 +1,108 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{commands}[2026/08/08 Custom macro definitions]
+
+% Declare the 'edit' option for debugging features
+\newif\if@edit
+\@editfalse
+\DeclareOption{edit}{\@edittrue}
+\ProcessOptions\relax
+
+% Debugging features (gated by 'edit' option)
+% For final edits only. This adds a highlight box around the first
+% reference to figures, tables, etc. 
+% Disable for print/submission versions.
+\if@edit
+  \makeatletter
+  %Redefine \cref so that it will make a margin note if the passed label is referenced for the first time.
+  \let\oldcref=\cref
+  \def\cref#1{%
+      \IfSubStr{#1}{,}{\oldcref{#1}}{%
+      %check if the label has already been referenced.
+      \ifcsname figure@#1\endcsname
+          %already exists...therefore not the first citation
+          \oldcref{#1}%
+      \else
+          \colorbox{yellow}{\oldcref{#1}}%}
+          \expandafter\gdef\csname figure@#1\endcsname{}%first citation...with this defined, will not underline again
+      \fi
+      }}
+  \makeatother
+
+  \makeatletter
+  %Redefine \Cref so that it will make a margin note if the passed label is referenced for the first time.
+  \let\Oldcref=\Cref
+  \def\Cref#1{%
+      \IfSubStr{#1}{,}{\Oldcref{#1}}{%
+      %check if the label has already been referenced.
+      \ifcsname figure@#1\endcsname
+          %already exists...therefore not the first citation
+          \Oldcref{#1}%
+      \else
+          \colorbox{yellow}{\Oldcref{#1}}%}
+          \expandafter\gdef\csname figure@#1\endcsname{}%first citation...with this defined, will not underline again
+      \fi
+      }}
+  \makeatother
+
+  \makeatletter
+  %Redefine \crefrange so that it will make a margin note if the passed range is referenced for the first time.
+  \let\oldcrefrange=\crefrange
+  \def\crefrange#1#2{%
+      %check if the range has already been referenced.
+      \ifcsname figurerange@#1@#2\endcsname
+          %already exists...therefore not the first citation
+          \oldcrefrange{#1}{#2}%
+      \else
+          \colorbox{yellow}{\oldcrefrange{#1}{#2}}%}
+          \expandafter\gdef\csname figurerange@#1@#2\endcsname{}%first citation...with this defined, will not underline again
+      \fi
+      % Track individual arguments regardless
+      \expandafter\gdef\csname figure@#1\endcsname{}%
+      \expandafter\gdef\csname figure@#2\endcsname{}%
+      }
+  \makeatother
+
+  \makeatletter
+  %Redefine \Crefrange so that it will make a margin note if the passed range is referenced for the first time.
+  \let\Oldcrefrange=\Crefrange
+  \def\Crefrange#1#2{%
+      %check if the range has already been referenced.
+      \ifcsname figurerange@#1@#2\endcsname
+          %already exists...therefore not the first citation
+          \Oldcrefrange{#1}{#2}%
+      \else
+          \colorbox{yellow}{\Oldcrefrange{#1}{#2}}%}
+          \expandafter\gdef\csname figurerange@#1@#2\endcsname{}%first citation...with this defined, will not underline again
+      \fi
+      % Track individual arguments regardless
+      \expandafter\gdef\csname figure@#1\endcsname{}%
+      \expandafter\gdef\csname figure@#2\endcsname{}%
+      }
+  \makeatother
+\fi
+
+% Command to define and track acronym usage.
+% Usage:
+%  \acronym{XRF}{X-ray fluorescence}
+% 
+% The first time this is used in a document will produce the text "X-ray fluorescence (XRF)",
+% all other uses will produce only "XRF".
+% Best combined with
+%
+% \newcommand{\XRF}{\acronym{XRF}{X-ray fluorescence}\xspace}
+% Then use only \XRF in the text.
+\makeatletter
+\def\acronym#1#2{%
+    \IfSubStr{#1}{,}{\oldcref{#1}}{%
+    %check if the label has already been referenced.
+    \ifcsname acronym@#1\endcsname
+        %already exists...therefore not the first citation
+        #1%
+    \else
+        #2~(#1)%
+        \expandafter\gdef\csname acronym@#1\endcsname{}%first citation...with this defined, will not underline again
+    \fi
+    }}
+\makeatother
+
+\endinput
