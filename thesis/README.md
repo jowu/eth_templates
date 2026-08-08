@@ -10,7 +10,4 @@ is applied.
 ## Missing features
 
 * Support hyperref properly (e.g. table of contents is tricky)
-* Support theses to be based off article or book classes.
-Useful for cases where only PDF (onesided) or a printed (twosided) copy are required.
-* Support clean page margin setup for one- and two-sided layouts. 
-* Support for co-advisors from other universities. Currently "ETH Zurich" is auto-generated.
+* Support for co-advisors from other universities. Currently, "ETH Zurich" is auto-generated.

@@ -1,0 +1,125 @@
+
+% eapsthesis class documentation
+% Generated documentation for the eapsthesis class
+% Location: thesis/eapsthesis-doc.tex
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\geometry{a4paper,margin=2.5cm}
+\title{Documentation: eapsthesis class}
+\author{Auto-generated from eapsthesis.cls}
+\date{2026-08-08}
+
+\frenchspacing
+\begin{document}
+\maketitle
+
+\section*{Purpose}
+This document describes the options and defaults provided by the eapsthesis class (file: eapsthesis.cls) used for BSc/MSc theses in the Department of Earth and Planetary Sciences (D-EAPS), ETH Zurich.
+
+\section*{Loading the class}
+Typical use:
+\begin{verbatim}
+\documentclass[11pt,bscthesis,book]{eapsthesis}
+\end{verbatim}
+
+If no thesis type is given, eapsthesis defaults to a BSc thesis in book mode (chapters).
+
+\section*{Supported class options and defaults}
+The class implements the following explicit options:
+
+\begin{description}
+  \item[\texttt{bscthesis}] (default)
+    Select Bachelor thesis layout and title page wording. This option is mutually exclusive with \texttt{mscthesis}.
+  \item[\texttt{mscthesis}] 
+      Select Master's thesis layout and title page wording. When used, the \verb|\specialization| command is 
+      displayed on the title page.
+      This option is mutually exclusive with \texttt{bscthesis}.
+  \item[\texttt{book}] (default: \textbf{true})
+    Use a book-like document structure with chapters. When active the class loads the \verb|book| base class 
+    with these explicit base-class options: 
+    
+    \texttt{a4paper, onecolumn, openright, titlepage}.
+    The class treats book mode as the two-sided thesis format (defaults to \texttt{twoside} geometry and 
+    open-right chapter starts appropriate for printed theses).
+  \item[\texttt{report}] (default: false)
+    Use a report/article-like structure (sections only). When active the class loads the \texttt{article} 
+    base class with these explicit base-class options: \texttt{a4paper, onecolumn, titlepage}.
+    The class treats report mode as a \texttt{oneside} (single-sided) format appropriate for section-only documents.
+\end{description}
+
+\noindent Additional options from base classes that are supported:
+
+\begin{description}
+  \item[\texttt{oneside}] Selects a layout with even left and right margins. The total text area size is the
+    same as with \texttt{twoside}, and thus should meet the requirements stated on BSc thesis website.
+    This option is automatically selected with \texttt{report}, but can be overridden by explicitly passing \texttt{twoside}.
+  \item[\texttt{twoside}] Selects a layour suited for printing and binding. Left and right margins are different,
+    as specified on the BSc thesis website. This option is the default for \texttt{book}, but can be overridden
+    by explicitly passing \texttt{oneside}.
+\end{description}
+
+\section*{Options explicitly disabled}
+The class declares the following base-class options as not allowed (they will be ignored and produce an \texttt{OptionNotUsed}):
+\begin{description}
+  \item[a5paper, letterpaper, b5paper, legalpaper, executivepaper] Paper format is prescribed.
+  \item[twocolumn] Single column is prescribed. 
+  \item[openany] This option is not needed. It's the standard behavior for \texttt{report}, and \texttt{book} defaults
+    to it when using \texttt{onside}, which is the only case in which this makes sense.
+\end{description}
+
+
+\section*{User-facing title-page commands}
+The class provides convenience macros used on the title page:
+\begin{description}
+  \item[\texttt{\textbackslash studentid{...}}] Student ID printed on title page.
+  \item[\texttt{\textbackslash mainadvisor{<name>}{<affiliation>}}] Main supervisor and affiliation.
+  \item[\texttt{\textbackslash coadvisor{<name>}{<affiliation>}}] Additional supervisor and affiliation.
+  \item[\texttt{\textbackslash specialization{...}}] Master's specialization text used for MSc title page.
+\end{description}
+
+\section*{Behaviour differences when choosing \texttt{book} vs. \texttt{report}}
+The class implements separate frontmatter/mainmatter/backmatter helpers for the two modes. Important differences:
+\begin{itemize}
+  \item book (chapters): \verb|\frontmatter|, \verb|\mainmatter| and chapter-based table-of-contents and lists are set up. The class loads \texttt{book} with \texttt{openright} and configures headers/footers appropriate for two-sided thesis printing. Page numbering in the frontmatter uses lowercase roman numerals and chapters are used for major ToC entries. Book mode is treated as the default two-sided (\texttt{twoside}) thesis layout.
+  \item report (sections-only): \verb|\frontmatter| and \verb|\mainmatter| are defined for section-based documents. TOC and lists are added as sections (not chapters) in the frontmatter and the class loads the \texttt{article} base class (with \texttt{a4paper,onecolumn,titlepage}). Report mode is treated as a oneside (single-sided) layout.
+\end{itemize}
+
+Because the class enforces its own base-class options at load time (for example \texttt{a4paper, onecolumn, titlepage} 
+are always specified), some package or class options that would change the base-class defaults are reverted to
+the eapsthesis defaults above when either \texttt{book} or \texttt{report} is selected.
+
+\section*{Page geometry and twoside}
+The class sets geometry explicitly. If the document is twoside (the \LaTeX\ primitive 
+\verb|\ifthenelse{\boolean{@twoside}}| is true), geometry is set to inner=3cm,outer=2cm,top=3cm,bottom=3cm; 
+otherwise symmetric margins 2.5cm are used. In typical use: \texttt{book} mode implies two-sided margins 
+whereas \texttt{report} implies one-sided margins.
+
+
+\section*{Bibliography and lists}
+The class loads \texttt{biblatex} (apa style, backend=biber) and redefines \verb|\printbibliography| so that the bibliography is added to the TOC (as a chapter in book mode, as a section in report mode). Similarly, list of figures/tables are added to the TOC at chapter or section level depending on mode.
+
+\section*{Notes and recommendations}
+\begin{itemize}
+  \item Default mode is equivalent to: \verb|\documentclass[bscthesis,book]{eapsthesis}|.
+  \item To produce a Master's thesis use \verb|mscthesis| and set \verb|\specialization{...}| and advisor commands accordingly.
+  \item Avoid passing paper-size or column/openside options; the class intentionally restricts or overrides these choices to ensure consistent thesis formatting.
+  \item If unusual base-class options are required, review the class file (eapsthesis.cls) and adjust there rather than relying on passing options to \verb|\documentclass|.
+\end{itemize}
+
+\section*{Where to look in the class file}
+Relevant lines and constructs in \texttt{eapsthesis.cls} (for maintainers): \verb|\DeclareOption{...}|, 
+the \verb|\setboolean| defaults at the top of the file, the \verb|\DeclareOption*| forwarding rule, and 
+the final \verb|\LoadClass[...]{book}| / \verb|\LoadClass[...]{article}| calls.
+
+Unrecognized options are forwarded to the underlying base class (the class attempts to pass unknown options to 
+\texttt{book}). However, eapsthesis later forces specific base-class options when loading the base class 
+(see previous section). As a consequence, if you pass options that affect page layout or division behavior 
+(paper size, one/two column, openright/openany, titlepage, twoside, etc.), the eapsthesis class may override or 
+ignore them in order to enforce its thesis defaults.
+
+\vspace{1em}
+\noindent Generated from class file: \texttt{thesis/eapsthesis.cls}.
+
+\end{document}
