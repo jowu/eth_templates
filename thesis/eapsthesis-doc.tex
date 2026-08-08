@@ -14,11 +14,16 @@
 \frenchspacing
 \begin{document}
 \maketitle
+\tableofcontents
+\clearpage
 
-\section*{Purpose}
-This document describes the options and defaults provided by the eapsthesis class (file: eapsthesis.cls) used for BSc/MSc theses in the Department of Earth and Planetary Sciences (D-EAPS), ETH Zurich.
+\section{Purpose}
+This document describes the options and defaults provided by the eapsthesis class (file: eapsthesis.cls) 
+used for BSc/MSc theses in the Department of Earth and Planetary Sciences (D-EAPS), ETH Zurich.
+The class itself loads a number of packages that will be available to all documents using the class.
+This brings some important constraints with package options that are documented in the corresponding section below.
 
-\section*{Loading the class}
+\section{Loading the class}
 Typical use:
 \begin{verbatim}
 \documentclass[11pt,bscthesis,book]{eapsthesis}
@@ -26,7 +31,10 @@ Typical use:
 
 If no thesis type is given, eapsthesis defaults to a BSc thesis in book mode (chapters).
 
-\section*{Supported class options and defaults}
+\section{Class options}
+
+\subsection{Supported Options}
+
 The class implements the following explicit options:
 
 \begin{description}
@@ -60,7 +68,8 @@ The class implements the following explicit options:
     by explicitly passing \texttt{oneside}.
 \end{description}
 
-\section*{Options explicitly disabled}
+\subsection{Options explicitly disabled}
+
 The class declares the following base-class options as not allowed (they will be ignored and produce an \texttt{OptionNotUsed}):
 \begin{description}
   \item[a5paper, letterpaper, b5paper, legalpaper, executivepaper] Paper format is prescribed.
@@ -69,17 +78,7 @@ The class declares the following base-class options as not allowed (they will be
     to it when using \texttt{onside}, which is the only case in which this makes sense.
 \end{description}
 
-
-\section*{User-facing title-page commands}
-The class provides convenience macros used on the title page:
-\begin{description}
-  \item[\texttt{\textbackslash studentid{...}}] Student ID printed on title page.
-  \item[\texttt{\textbackslash mainadvisor{<name>}{<affiliation>}}] Main supervisor and affiliation.
-  \item[\texttt{\textbackslash coadvisor{<name>}{<affiliation>}}] Additional supervisor and affiliation.
-  \item[\texttt{\textbackslash specialization{...}}] Master's specialization text used for MSc title page.
-\end{description}
-
-\section*{Behaviour differences when choosing \texttt{book} vs. \texttt{report}}
+\subsection{Behaviour differences when choosing \texttt{book} vs. \texttt{report}}
 The class implements separate frontmatter/mainmatter/backmatter helpers for the two modes. Important differences:
 \begin{itemize}
   \item book (chapters): \verb|\frontmatter|, \verb|\mainmatter| and chapter-based table-of-contents and lists are set up. The class loads \texttt{book} with \texttt{openright} and configures headers/footers appropriate for two-sided thesis printing. Page numbering in the frontmatter uses lowercase roman numerals and chapters are used for major ToC entries. Book mode is treated as the default two-sided (\texttt{twoside}) thesis layout.
@@ -90,17 +89,43 @@ Because the class enforces its own base-class options at load time (for example 
 are always specified), some package or class options that would change the base-class defaults are reverted to
 the eapsthesis defaults above when either \texttt{book} or \texttt{report} is selected.
 
-\section*{Page geometry and twoside}
+\subsection{Page geometry and twoside}
 The class sets geometry explicitly. If the document is twoside (the \LaTeX\ primitive 
 \verb|\ifthenelse{\boolean{@twoside}}| is true), geometry is set to inner=3cm,outer=2cm,top=3cm,bottom=3cm; 
 otherwise symmetric margins 2.5cm are used. In typical use: \texttt{book} mode implies two-sided margins 
 whereas \texttt{report} implies one-sided margins.
 
+\section{User-facing commands}
 
-\section*{Bibliography and lists}
-The class loads \texttt{biblatex} (apa style, backend=biber) and redefines \verb|\printbibliography| so that the bibliography is added to the TOC (as a chapter in book mode, as a section in report mode). Similarly, list of figures/tables are added to the TOC at chapter or section level depending on mode.
+The class provides commands to fill in the title page:
+\begin{description}
+  \item[\texttt{\textbackslash studentid{...}}] Student ID printed on title page.
+  \item[\texttt{\textbackslash mainadvisor{<name>}{<affiliation>}}] Main supervisor and affiliation.
+  \item[\texttt{\textbackslash coadvisor{<name>}{<affiliation>}}] Additional supervisor and affiliation.
+  \item[\texttt{\textbackslash specialization{...}}] Master's specialization text used for MSc title page.
+\end{description}
 
-\section*{Notes and recommendations}
+The layout of the title page is fairly rigidly prescribed and shaped by the class accordingly.
+
+
+\section{Packages loaded by the class}
+The class explicitly loads the following packages:
+\begin{itemize}
+  \item \verb|graphicx| --- \verb|\includegraphics| and friends.
+  \item \verb|geometry| --- for page geometry settings (loaded with option \texttt{a4paper}). Settings can be changed
+    in the main document.
+  \item \verb|fancyhdr| --- for custom headers and footers. Options can be changed in the main document.
+  \item \verb|biblatex| --- loaded with options \verb|style=apa, backend=biber| for bibliography handling. See below.
+  \item \verb|xifthen| --- provides boolean conditionals and \verb|\newboolean|, \verb|\ifthenelse| used
+   by the class. You will likely never need this.
+\end{itemize}
+
+That the class loads \texttt{biblatex} brings some important limitations. Most importantly, the citations style
+is an option that must be provided a class load time, and cannot be provided later. That means the class
+must set that option. At the moment, this is hardcoded to \texttt{apac}, which is appropriate for 
+D-EAPS theses. 
+
+\section{Notes and recommendations}
 \begin{itemize}
   \item Default mode is equivalent to: \verb|\documentclass[bscthesis,book]{eapsthesis}|.
   \item To produce a Master's thesis use \verb|mscthesis| and set \verb|\specialization{...}| and advisor commands accordingly.
@@ -108,7 +133,7 @@ The class loads \texttt{biblatex} (apa style, backend=biber) and redefines \verb
   \item If unusual base-class options are required, review the class file (eapsthesis.cls) and adjust there rather than relying on passing options to \verb|\documentclass|.
 \end{itemize}
 
-\section*{Where to look in the class file}
+\section{Implementation notes}
 Relevant lines and constructs in \texttt{eapsthesis.cls} (for maintainers): \verb|\DeclareOption{...}|, 
 the \verb|\setboolean| defaults at the top of the file, the \verb|\DeclareOption*| forwarding rule, and 
 the final \verb|\LoadClass[...]{book}| / \verb|\LoadClass[...]{article}| calls.
