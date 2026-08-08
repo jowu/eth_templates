@@ -56,6 +56,7 @@
     \setboolean{@report}{true}
 }
 
+
 % Disable existing options from the book and article classes that are not allowed for theses.
 \DeclareOption{a5paper}{\OptionNotUsed}
 \DeclareOption{letterpaper}{\OptionNotUsed}
@@ -74,8 +75,8 @@
   to: }
 \typeout{*** Jochen Wuttke <jwuttke@ethz.ch>}
 %%% base class loading
-\ifthenelse{\boolean{@book}}{\LoadClass[a4paper,twoside,onecolumn,openright,titlepage]{book}}{}
-\ifthenelse{\boolean{@report}}{\LoadClass[a4paper,twoside,onecolumn,titlepage]{article}}{}
+\ifthenelse{\boolean{@book}}{\LoadClass[a4paper,onecolumn,openright,titlepage]{book}}{}
+\ifthenelse{\boolean{@report}}{\LoadClass[a4paper,onecolumn,titlepage]{article}}{}
 
 % Load packages required for basic class layout
 % We need to load this before fancyhdr, because it sets head margins etc.
@@ -107,14 +108,15 @@
 
 % Page format required to twosided layout of BSc thesis (as of 2026-08-08)
 % We set this univerally here, but the title page overrides this locally.
-\geometry{a4paper,inner=3cm,outer=2cm,top=3cm,bottom=3cm}
+\ifthenelse{\boolean{@twoside}}{\geometry{a4paper,inner=3cm,outer=2cm,top=3cm,bottom=3cm}}
+    {\geometry{a4paper,left=2.5cm,right=2.5cm,top=3cm,bottom=3cm}}
 
 %%% title page
 \renewcommand{\maketitle}
 {%
     \begin{titlepage}%
     \pagestyle{empty}
-    \newgeometry{inner=2cm,outer=3cm,top=1cm,bottom=1cm}
+    \newgeometry{inner=2.5cm,outer=3cm,top=1cm,bottom=1cm}
     \pagenumbering{Alph}
     \noindent \hspace*{-0.8cm}\includegraphics[scale=0.9]{eth-logo-pos.png}
 
@@ -226,8 +228,13 @@
     \renewcommand{\chaptermark}[1]{\markboth{\ ##1}{}}
     \renewcommand{\sectionmark}[1]{\markright{\thesection\ ##1}}
     \fancyhead{}
-    \fancyhead[RO, RE]{\rightmark}
-    \fancyhead[LO, LE]{\thepage}
+    \ifthenelse{\boolean{@twoside}}{
+        \fancyhead[RO, RE]{\rightmark}
+        \fancyhead[LO, LE]{\thepage}
+    }{
+        \fancyhead[R]{\rightmark}
+        \fancyhead[L]{\thepage}
+    }
     \fancyfoot{}
 } %%% end frontmatter
 
