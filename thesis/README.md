@@ -28,3 +28,6 @@ or similar.
 
 For more advanced use cases, you can install the template and PNGs in a directory that LaTeX searches
 for class files. AI will know how to do this, so it's not documented here.
+
+There are two example files showing the use for the two main options \texttt{book} and \texttt{report}.
+Start from there, they cover 99% of what you are going to need.

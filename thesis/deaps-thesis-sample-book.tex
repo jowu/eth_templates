@@ -1,23 +1,61 @@
-\documentclass[11pt,mscthesis,oneside]{eapsthesis}
+% See documentation for class options.
+\documentclass[11pt,mscthesis]{eapsthesis}
 
-\usepackage{setspace}
-
+% Only for the sample text below. DELETE THESE WHEN YOU START YOUR PROJECT.
 \usepackage{lipsum}
 \usepackage{amssymb}
 \usepackage{amsmath}
+% DELETE THE PACKAGES ABOVE BEFORE YOU START YOUR PROJECT.
+
+% Recommended to set line spacing to 1.5 as required.
+\usepackage{setspace}
+
+% Default formatting packages. Just load these, you'll need them anyway.
+\usepackage{booktabs}   % for nice tables
+\usepackage{subcaption} % for combining multiple figures
+\usepackage{caption}    % To define custom figure caption formatting.
+\captionsetup{font=small,labelfont={bf},width=0.95\textwidth} % smaller caption font size
+
+% Extra formatting packages, load as needed.
+% Defines some extra symbols like \degree
+% \usepackage{gensymb}
+% Defines commands to merge cells in tables.
+% \usepackage{multirow}
+% \usepacakge{multicolumn}
+% \usepackage{pdflscape}  % to insert landscape pages, e.g. for large tables
+% \usepackage{afterpage}  % to clean up floats and similar. Ignore this if you don't know what it does.
+
+% Enable this package, if you want references and citations to be clickable hyperlinks.
+% The default formatting below enables links, but doesn't format them differently!
+% \usepackage{hyperref}
+% \hypersetup{colorlinks=false, pdfborder={0 0 0}}
+
+% Math fonts and extra environments for formulas.
+% \usepackage{amsmath}
+% \usepackage{mathtools}
+% \usepackage{textcomp}
+
+% Internal references, this MUST be the last package loaded, except commands below.
+\usepackage{cleveref}
+% Custom commands the improve editing workflows and define some helpers.
+% See documentation for use, remove if in doubt.
+% \usepackage[edit]{commands}
 
 
-% Citation formats and processors. The class file loads biblatex with apa style.
+
+
+% The class file loads biblatex with apa style. Change the filename to whatever your bib is called.
 \addbibresource{bib.bib}
 
 
 \title{My Thesis - A very long title\\ which runs over two
-lines} %compulsory
+lines} 
 \date{\today}
 \author{Random \textsc{Student}}
 \studentid{xx-yyy-zzz}
 \specialization{Master in Earth Sciences, Major Geology}
 
+% Fills in the data on the title page.
 \mainadvisor{Prof.\ Dr.\ Some \textsc{Professor}}{Institute for Geology}
 \coadvisor{Dr.\ A \textsc{Researcher}}{Institute for Geochemistry and Petrology}
 

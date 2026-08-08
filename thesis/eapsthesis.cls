@@ -292,11 +292,15 @@
     \fancyfoot[C]{\thepage}
     \renewcommand{\headrulewidth}{0pt}}
     \pagestyle{fancy}
-    % \renewcommand{\chaptermark}[1]{\markboth{\ ##1}{}}
     \renewcommand{\sectionmark}[1]{\markright{\thesection\ ##1}}
     \fancyhead{}
-    \fancyhead[RO, RE]{\rightmark}
-    \fancyhead[LO, LE]{\thepage}
+    \ifthenelse{\boolean{@twoside}}{
+        \fancyhead[RO, RE]{\rightmark}
+        \fancyhead[LO, LE]{\thepage}
+    }{
+        \fancyhead[R]{\rightmark}
+        \fancyhead[L]{\thepage}
+    }
     \fancyfoot{}
 } %%% end frontmatter
 

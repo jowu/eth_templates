@@ -17,3 +17,7 @@ A simple, single-file template for reports and short articles.
 ## thesis
 
 A full template supporting the D-EAPS formatting requirements for BSc and MSc theses.
+
+# Contributions
+
+I'm accepting contributions and fixes.
