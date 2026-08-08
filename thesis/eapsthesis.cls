@@ -51,6 +51,9 @@
 \DeclareOption{twocolumn}{\OptionNotUsed}
 
 % Process the given options and load the relevant document base class.
+\DeclareOption*{% 
+\PassOptionsToClass{\CurrentOption}{book}
+} 
 \ProcessOptions \relax
 \typeout{*** Please report bugs, comments, suggestions, and improvements
   to: }
@@ -100,50 +103,63 @@
 
 \vfill
 
-\noindent\ifthenelse{\boolean{@bscthesis}}{\Large\textbf{Bachelor's Thesis}\\
-\\
-\large Bachelor in Earth and Climate Sciences, Geology and Geophysics}{}
-\ifthenelse{\boolean{@mscthesis}}{\Large\textbf{Master's Thesis}\\
-\\
-\large Master in \@specialization
-}{}\\
+\begin{flushleft}
+    \ifthenelse{\boolean{@bscthesis}}{\Large\textbf{Bachelor's Thesis}\\
+    \vspace{1ex}
+    
+    \large Bachelor in Earth and Climate Sciences, Geology and Geophysics}{}
+    \noindent\ifthenelse{\boolean{@mscthesis}}{\Large\textbf{Master's Thesis}\\
+    \vspace{1ex}
+    
+    \large\@specialization}{}
+\end{flushleft}
 
 \vfill
 
-{\large
-\noindent\begin{tabular}{p{4cm}l}
-presented by & \@author \\
-& \@studentid \\
-\end{tabular}
-}
+\noindent
+\begin{minipage}{\textwidth}%
+    \hspace*{-\tabcolsep}{\large
+    \begin{tabular}{p{4cm}l}
+    presented by & \@author \\
+    & \@studentid \\
+    \end{tabular}
+    }
+\end{minipage}
 
 \vfill
 
 {
-\setstretch{1.5}
-\noindent {\LARGE {\bf \@title}}\\
+\noindent\begin{onehalfspace}%
+\LARGE {\bf \@title}
+\end{onehalfspace}
 }
 \vfill
+
+\noindent\begin{minipage}{\textwidth}%
+    \hspace*{-\tabcolsep}{
+        \begin{tabular}{p{4cm}l}
+        Main supervisor & \@mainadvisor \\
+            & \@mainaff \\
+            & Department of Earth and Planetary Sciences, ETH Zurich \\    
+            & \\
+        Additional supervisor & \@coadvisor \\
+        & \@coaff \\
+        & Department of Earth and Planetary Sciences, ETH Zurich \\
+        \end{tabular}
+    }
+\end{minipage}
+
+
+\vfill
 \vfill
 
-
-\noindent\begin{tabular}{p{4cm}l}
-    Main supervisor & \@mainadvisor \\
-     & \@mainaff \\
-     & Department of Earth and Planetary Sciences, ETH Zurich \\    
-     & \\
-    Additional supervisor & \@coadvisor \\
-    & \@coaff \\
-    & Department of Earth and Planetary Sciences, ETH Zurich \\
-  \end{tabular}
-
-
-\vfill
-\vfill
-
-\noindent\begin{tabular}{p{4cm}l}
+\noindent\begin{minipage}{\textwidth}
+    \hspace*{-\tabcolsep}{
+    \begin{tabular}{p{4cm}l}
     handed in on & \@date\\
-\end{tabular}
+    \end{tabular}
+    }
+\end{minipage}
 
 \vfill
 \vfill
