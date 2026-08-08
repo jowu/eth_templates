@@ -1,0 +1,107 @@
+\documentclass[11pt,mscthesis]{eapsthesis}
+
+\usepackage{setspace}
+
+\usepackage{lipsum}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+
+% Citation formats and processors. The class file loads biblatex with apa style.
+\addbibresource{bib.bib}
+
+
+\title{My Thesis - A very long title\\ which runs over two
+lines} %compulsory
+\date{\today}
+\author{Random \textsc{Student}}
+\studentid{xx-yyy-zzz}
+\specialization{Master in Earth Sciences, Major Geology}
+
+\mainadvisor{Prof.\ Dr.\ Some \textsc{Professor}}{Institute for Geology}
+\coadvisor{Dr.\ A \textsc{Researcher}}{Institute for Geochemistry and Petrology}
+
+\begin{document}
+
+\maketitle %generates the titlepage, this is FIXED. Parameters are above.
+
+\onehalfspace % sets linespacing to 1.5, as required for the BSc thesis.
+\frontmatter %generates the frontmatter settings, this is FIXED
+
+\begin{abstract}
+This is a very abstract abstract. 
+
+\lipsum
+\end{abstract}
+
+\begin{abstract}[Zusammenfassung]
+optional, use only if your external advisor requires it in his/her
+language 
+\\
+
+\lipsum
+\end{abstract}
+
+% Can be placed here or at the end of the document.
+\begin{acknowledgements}
+\lipsum 
+\end{acknowledgements}
+
+\tableofcontents 
+
+% \listoffigures %optional
+% \listoftables %optional
+
+\mainmatter
+
+\chapter{Introduction}
+
+\lipsum
+
+
+
+\chapter[Short title]{A chapter title which will run over two lines --- it's for
+  testing purpose}
+
+\lipsum[1-2]
+
+\section{The first section}
+\lipsum[3-4]
+
+ \section{The second, math section}
+
+\textbf{Theorem 1 (Residue Theorem).}
+Let $f$ be analytic in the region $G$ except for the isolated singularities $a_1,a_2,\ldots,a_m$. If $\gamma$ is a closed rectifiable curve in $G$ which does not pass through any of the points $a_k$ and if $\gamma\approx 0$ in $G$ then
+\[
+\frac{1}{2\pi i}\int_\gamma f = \sum_{k=1}^m n(\gamma;a_k) \text{Res}(f;a_k).
+\]
+\textbf{Theorem 2 (Maximum Modulus).}
+\emph{Let $G$ be a bounded open set in $\mathbb{C}$ and suppose that $f$ is a continuous function on $G^-$ which is analytic in $G$. Then}
+\[
+\max\{|f(z)|:z\in G^-\}=\max \{|f(z)|:z\in \partial G \}.
+\]
+
+\section[third]{A very very long section, titled ``The third section'', with
+  a rather  short text alternative (third)}
+\lipsum \texttt{Some Test}
+
+\nocite{*}
+
+\appendix %optional, use only if you have an appendix
+
+\chapter{Some retarded material}
+\section{It's over\dots}
+\lipsum 
+
+\backmatter
+
+\chapter{Glossary} %optional
+
+\printbibliography
+
+
+%\theindex %optional, use only if you have an index, must use
+	  %\makeindex in the preamble
+% \lipsum
+
+\end{document}

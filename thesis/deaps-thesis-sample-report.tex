@@ -1,4 +1,4 @@
-\documentclass[11pt,mscthesis]{eapsthesis}
+\documentclass[11pt,mscthesis,report]{eapsthesis}
 
 \usepackage{setspace}
 
@@ -42,6 +42,7 @@ language
 \lipsum
 \end{abstract}
 
+% Can be places here, or at the end in the end of the document.
 \begin{acknowledgements}
 \lipsum 
 \end{acknowledgements}
@@ -53,13 +54,13 @@ language
 
 \mainmatter
 
-\chapter{Introduction}
+\section{Introduction}
 
 \lipsum
 
 
 
-\chapter[Short title]{A chapter title which will run over two lines --- it's for
+\section[Short title]{A chapter title which will run over two lines --- it's for
   testing purpose}
 
 \lipsum[1-2]
@@ -88,13 +89,14 @@ Let $f$ be analytic in the region $G$ except for the isolated singularities $a_1
 
 \appendix %optional, use only if you have an appendix
 
-\chapter{Some retarded material}
-\section{It's over\dots}
+% In report style theses, having more than one appendix section gets confusing. But can be done.
+% Section numbering changes from 1,2,3, to A, B, C.
+\section{Appendix}
 \lipsum 
 
 \backmatter
 
-\chapter{Glossary} %optional
+\section{Glossary} %optional
 
 \printbibliography
 

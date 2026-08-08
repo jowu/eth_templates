@@ -41,6 +41,20 @@
     \setboolean{@bscthesis}{false}
     \setboolean{@mscthesis}{true}
 }
+% Options to set whether the thesis should use a report format using only sections,
+% or a book format using chapters. Defaults to book.
+\newboolean{@book}
+\newboolean{@report}
+\setboolean{@book}{true}
+\setboolean{@report}{false}
+\DeclareOption{book}{
+    \setboolean{@book}{true}
+    \setboolean{@report}{false}
+}
+\DeclareOption{report}{
+    \setboolean{@book}{false}
+    \setboolean{@report}{true}
+}
 
 % Disable existing options from the book and article classes that are not allowed for theses.
 \DeclareOption{a5paper}{\OptionNotUsed}
@@ -49,6 +63,7 @@
 \DeclareOption{legalpaper}{\OptionNotUsed}
 \DeclareOption{executivepaper}{\OptionNotUsed}
 \DeclareOption{twocolumn}{\OptionNotUsed}
+\DeclareOption{openany}{\OptionNotUsed}
 
 % Process the given options and load the relevant document base class.
 \DeclareOption*{% 
@@ -59,7 +74,8 @@
   to: }
 \typeout{*** Jochen Wuttke <jwuttke@ethz.ch>}
 %%% base class loading
-\LoadClass[a4paper,twoside,onecolumn,openright,titlepage]{book}
+\ifthenelse{\boolean{@book}}{\LoadClass[a4paper,twoside,onecolumn,openright,titlepage]{book}}{}
+\ifthenelse{\boolean{@report}}{\LoadClass[a4paper,twoside,onecolumn,titlepage]{article}}{}
 
 % Load packages required for basic class layout
 % We need to load this before fancyhdr, because it sets head margins etc.
@@ -95,77 +111,79 @@
 
 %%% title page
 \renewcommand{\maketitle}
-{\pagenumbering{Alph}
-\begin{titlepage}%
-  \pagestyle{empty}
-\newgeometry{inner=2cm,outer=3cm,top=1cm,bottom=1cm}
-\noindent \hspace*{-0.8cm}\includegraphics[scale=0.9]{eth-logo-pos.png}
+{%
+    \begin{titlepage}%
+    \pagestyle{empty}
+    \newgeometry{inner=2cm,outer=3cm,top=1cm,bottom=1cm}
+    \pagenumbering{Alph}
+    \noindent \hspace*{-0.8cm}\includegraphics[scale=0.9]{eth-logo-pos.png}
 
-\vfill
+    \vfill
 
-\begin{flushleft}
-    \ifthenelse{\boolean{@bscthesis}}{\Large\textbf{Bachelor's Thesis}\\
-    \vspace{1ex}
-    
-    \large Bachelor in Earth and Climate Sciences, Geology and Geophysics}{}
-    \noindent\ifthenelse{\boolean{@mscthesis}}{\Large\textbf{Master's Thesis}\\
-    \vspace{1ex}
-    
-    \large\@specialization}{}
-\end{flushleft}
+    \begin{flushleft}
+        \ifthenelse{\boolean{@bscthesis}}{\Large\textbf{Bachelor's Thesis}\\
+        \vspace{1ex}
+        
+        \large Bachelor in Earth and Climate Sciences, Geology and Geophysics}{}
+        \noindent\ifthenelse{\boolean{@mscthesis}}{\Large\textbf{Master's Thesis}\\
+        \vspace{1ex}
+        
+        \large\@specialization}{}
+    \end{flushleft}
 
-\vfill
+    \vfill
 
-\noindent
-\begin{minipage}{\textwidth}%
-    \hspace*{-\tabcolsep}{\large
-    \begin{tabular}{p{4cm}l}
-    presented by & \@author \\
-    & \@studentid \\
-    \end{tabular}
-    }
-\end{minipage}
-
-\vfill
-
-{
-\noindent\begin{onehalfspace}%
-\LARGE {\bf \@title}
-\end{onehalfspace}
-}
-\vfill
-
-\noindent\begin{minipage}{\textwidth}%
-    \hspace*{-\tabcolsep}{
+    \noindent
+    \begin{minipage}{\textwidth}%
+        \hspace*{-\tabcolsep}{\large
         \begin{tabular}{p{4cm}l}
-        Main supervisor & \@mainadvisor \\
-            & \@mainaff \\
-            & Department of Earth and Planetary Sciences, ETH Zurich \\    
-            & \\
-        Additional supervisor & \@coadvisor \\
-        & \@coaff \\
-        & Department of Earth and Planetary Sciences, ETH Zurich \\
+        presented by & \@author \\
+        & \@studentid \\
         \end{tabular}
+        }
+    \end{minipage}
+
+    \vfill
+
+    {
+    \noindent\begin{onehalfspace}%
+    \LARGE {\bf \@title}
+    \end{onehalfspace}
     }
-\end{minipage}
+    \vfill
+
+    \noindent\begin{minipage}{\textwidth}%
+        \hspace*{-\tabcolsep}{
+            \begin{tabular}{p{4cm}l}
+            Main supervisor & \@mainadvisor \\
+                & \@mainaff \\
+                & Department of Earth and Planetary Sciences, ETH Zurich \\    
+                & \\
+            Additional supervisor & \@coadvisor \\
+            & \@coaff \\
+            & Department of Earth and Planetary Sciences, ETH Zurich \\
+            \end{tabular}
+        }
+    \end{minipage}
 
 
-\vfill
-\vfill
+    \vfill
+    \vfill
 
-\noindent\begin{minipage}{\textwidth}
-    \hspace*{-\tabcolsep}{
-    \begin{tabular}{p{4cm}l}
-    handed in on & \@date\\
-    \end{tabular}
-    }
-\end{minipage}
+    \noindent\begin{minipage}{\textwidth}
+        \hspace*{-\tabcolsep}{
+        \begin{tabular}{p{4cm}l}
+        handed in on & \@date\\
+        \end{tabular}
+        }
+    \end{minipage}
 
-\vfill
-\vfill
+    \vfill
+    \vfill
 
-\noindent \includegraphics[scale=0.1]{eaps-logo.png}
-\end{titlepage}%
+    \noindent \includegraphics[scale=0.1]{eaps-logo.png}
+    \end{titlepage}%
+    \restoregeometry
 } %%% end titlepage
 
 % Reset stuff to defaults for the rest of the document and clear two pages (for twoside layout).
@@ -175,7 +193,7 @@
   \setcounter{page}\z@
 }%
 {%
-    \pagenumbering{Roman}
+    \pagenumbering{roman}
     \clearpage
 
     \thispagestyle{empty}
@@ -191,6 +209,7 @@
 % should they come in front. 
 % The main thing is that the frontmatter uses a different number format for page numbers, and resets
 % the counter when the mainmatter starts.
+\ifthenelse{\boolean{@book}}{%
 \renewcommand\frontmatter{%
     \@mainmatterfalse
 
@@ -211,18 +230,11 @@
     \fancyhead[LO, LE]{\thepage}
     \fancyfoot{}
 } %%% end frontmatter
-  
 
 %%% "Abstract" environment. This will sit on its own page.
 \newenvironment{abstract}[1][Abstract]{%
 \section*{#1\markboth{#1}{}}
 }{\cleardoublepage}  %% TODO: only cleardouble when twosided.
-
-%%% "Acknowledgments" environment. This will sit on its own page.
-\newenvironment{acknowledgements}{%
-\section*{Acknowledgements\markboth{Acknowledgements}{}}
-}{\cleardoublepage}  %% TODO: only cleardoublepage in twosided
-
 
 %%% put ToC, LoF, LoT and Index entries in the ToC
 %%% use of \phantomsection is required for dealing with hyperref
@@ -256,3 +268,80 @@
     \oldbib
     \cleardoublepage
 }
+
+}{}
+
+\ifthenelse{\boolean{@report}}{%
+\newcommand\frontmatter{%
+    % \@mainmatterfalse
+
+    \pagestyle{empty}
+    \pagenumbering{roman}
+    \setcounter{page}{1}
+    \pagestyle{hrulefpage}
+    % Setting header formats. Should be the same as the rest of the text.
+    \fancypagestyle{plain}{%
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}}
+    \pagestyle{fancy}
+    % \renewcommand{\chaptermark}[1]{\markboth{\ ##1}{}}
+    \renewcommand{\sectionmark}[1]{\markright{\thesection\ ##1}}
+    \fancyhead{}
+    \fancyhead[RO, RE]{\rightmark}
+    \fancyhead[LO, LE]{\thepage}
+    \fancyfoot{}
+} %%% end frontmatter
+
+\newcommand\mainmatter{
+    \pagenumbering{arabic}
+}
+
+\newcommand\backmatter{}
+
+%%% "Abstract" environment. This will sit on its own page.
+\renewenvironment{abstract}[1][Abstract]{%
+\section*{#1\markboth{#1}{}}
+}{\cleardoublepage}  %% TODO: only cleardouble when twosided.
+
+%%% put ToC, LoF, LoT and Index entries in the ToC
+%%% use of \phantomsection is required for dealing with hyperref
+%%% package and depends on nohyper option
+
+\renewcommand\listoffigures{%
+% \ifthenelse{\boolean{@hypermode}}{\phantomsection}{}
+    \addcontentsline{toc}{section}{List of \listfigurename}%
+    \chapter*{\listfigurename}%
+      \@mkboth{\listfigurename}%
+              {\listfigurename}%
+    \@starttoc{lof}%
+    \cleardoublepage
+}
+
+\renewcommand\listoftables{%
+% \ifthenelse{\boolean{@hypermode}}{\phantomsection}{}
+\addcontentsline{toc}{section}{List of \listtablename}%
+    \chapter*{\listtablename}%
+      \@mkboth{%
+          \listtablename}%
+         {\listtablename}%
+    \@starttoc{lot}%
+}
+
+\RequirePackage[style=apa, backend=biber]{biblatex}
+% Redefine print bibliography to add the bibliography to the table of contents.
+\let\oldbib=\printbibliography
+\renewcommand{\printbibliography}{
+    \addcontentsline{toc}{section}{\bibname}
+    \oldbib
+    \cleardoublepage
+}
+}{}
+  
+
+%%% "Abstract" environment. This will sit on its own page.
+
+%%% "Acknowledgments" environment. This will sit on its own page.
+\newenvironment{acknowledgements}{%
+\section*{Acknowledgements\markboth{Acknowledgements}{}}
+}{\cleardoublepage}  %% TODO: only cleardoublepage in twosided
