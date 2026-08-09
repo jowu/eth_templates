@@ -109,6 +109,8 @@ to: }
 \newcommand{\mainadvisor}[2]{\gdef\@mainadvisor{#1}\gdef\@mainaff{#2}}
 % Co-advisor, displayed on the title page.
 \newcommand{\coadvisor}[2]{\gdef\@coadvisor{#1}\gdef\@coaff{#2}}
+% Examiner, displayed on the title page of the Master template.
+\newcommand{\examiner}[2]{\gdef\@examiner{#1}\gdef\@exaff{#2}}
 % Master Specialization
 \newcommand{\specialization}[1]{\gdef\@specialization{#1}}
 
@@ -170,8 +172,12 @@ to: }
                 & Department of Earth and Planetary Sciences, ETH Zurich \\    
                 & \\
             Additional supervisor & \@coadvisor \\
-            & \@coaff \\
-            & Department of Earth and Planetary Sciences, ETH Zurich \\
+                & \@coaff \\
+                & Department of Earth and Planetary Sciences, ETH Zurich \\
+            \\
+            Examiner & \@examiner \\
+                & \@exaff \\
+                & Department of Earth and Planetary Sciences, ETH Zurich \\
             \end{tabular}
         }
     \end{minipage}

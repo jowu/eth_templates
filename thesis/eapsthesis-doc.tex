@@ -8,7 +8,7 @@
 \usepackage{geometry}
 \geometry{a4paper,margin=2.5cm}
 \title{Documentation: eapsthesis class}
-\author{Auto-generated from eapsthesis.cls}
+\author{jochen Wuttke}
 \date{2026-08-08}
 
 \frenchspacing
@@ -101,12 +101,20 @@ whereas \texttt{report} implies one-sided margins.
 
 \section{User-facing commands}
 
+The class requires several standard commands like \texttt{\textbackslash title} and \texttt{\textbackslash author}
+to be present. Those are all standard and not documented here.
+
 The class provides commands to fill in the title page:
 \begin{description}
-  \item[\texttt{\textbackslash studentid{...}}] Student ID printed on title page.
-  \item[\texttt{\textbackslash mainadvisor{<name>}{<affiliation>}}] Main supervisor and affiliation.
-  \item[\texttt{\textbackslash coadvisor{<name>}{<affiliation>}}] Additional supervisor and affiliation.
-  \item[\texttt{\textbackslash specialization{...}}] Master's specialization text used for MSc title page.
+  \item[\texttt{\textbackslash studentid\{\}}] \textbf{Required}. Student ID printed on title page.
+  \item[\texttt{\textbackslash mainadvisor\{<name>\}\{<department>\}}] \textbf{Required}. Main supervisor 
+    and department affiliation.
+  \item[\texttt{\textbackslash coadvisor\{<name>\}\{<department>\}}] \textbf{Required}. Additional 
+    supervisor and department affiliation.
+  \item[\texttt{\textbackslash examiner\{<name>\}\{<department>\}}] \textbf{\texttt{mscthesis} only}. 
+    Examiner and department affiliation.
+  \item[\texttt{\textbackslash specialization\{\}}] \textbf{\texttt{mscthesis} only}. Master's program and 
+    specialization text used for MSc title page.
 \end{description}
 
 The layout of the title page is fairly rigidly prescribed and shaped by the class accordingly.
@@ -122,11 +130,12 @@ The class explicitly loads the following packages:
   \item \verb|biblatex| --- loaded with options \verb|style=apa, backend=biber| for bibliography handling. See below.
   \item \verb|xifthen| --- provides boolean conditionals and \verb|\newboolean|, \verb|\ifthenelse| used
    by the class. You will likely never need this.
+   \item \texttt{hyperref} --- Unless turned off with the \texttt{nohyper} class option. 
 \end{itemize}
 
 That the class loads \texttt{biblatex} brings some important limitations. Most importantly, the citations style
 is an option that must be provided a class load time, and cannot be provided later. That means the class
-must set that option. At the moment, this is hardcoded to \texttt{apac}, which is appropriate for 
+must set that option. At the moment, this is hardcoded to \texttt{apa}, which is appropriate for 
 D-EAPS theses. 
 
 \section{Notes and recommendations}
