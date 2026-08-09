@@ -18,6 +18,10 @@ A simple, single-file template for reports and short articles.
 
 A full template supporting the D-EAPS formatting requirements for BSc and MSc theses.
 
+## bsc_proposal
+
+Simple, single file template for the proposal (title page) and basic packages to get going.
+
 # Contributions
 
 I'm accepting contributions and fixes.
