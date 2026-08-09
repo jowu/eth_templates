@@ -11,13 +11,6 @@ as many features from usiinf are not needed and introduce too much complexity in
 
 ## Missing features
 
-<<<<<<< HEAD
-* *Examiner* as specified by the sample title page for Master's thesis not supported.
-* Support hyperref properly (e.g. table of contents is tricky)
-=======
->>>>>>> 89ab778 (Added working hyperref support and the 'nohyper' option to the thesis template.)
-* Support for co-advisors from other universities. Currently, "ETH Zurich" is auto-generated.
-* Support for advisors from different universities.
 
 ## Usage
 

@@ -106,11 +106,14 @@ to: }
 % Student ID, displayed on the title page.
 \newcommand{\studentid}[1]{\gdef\@studentid{#1}}
 % Main advisor, displayed on the title page.
-\newcommand{\mainadvisor}[2]{\gdef\@mainadvisor{#1}\gdef\@mainaff{#2}}
+\newcommand{\mainadvisor}[3][Department of Earth and Planetary Sciences, ETH Zurich]
+{\gdef\@maindep{#3}\gdef\@mainadvisor{#2}\gdef\@mainaff{#1}}
 % Co-advisor, displayed on the title page.
-\newcommand{\coadvisor}[2]{\gdef\@coadvisor{#1}\gdef\@coaff{#2}}
+\newcommand{\coadvisor}[3][Department of Earth and Planetary Sciences, ETH Zurich]
+{\gdef\@coaff{#1}\gdef\@coadvisor{#2}\gdef\@codep{#3}}
 % Examiner, displayed on the title page of the Master template.
-\newcommand{\examiner}[2]{\gdef\@examiner{#1}\gdef\@exaff{#2}}
+\newcommand{\examiner}[3][Department of Earth and Planetary Sciences, ETH Zurich]
+{\gdef\@exaff{#1}\gdef\@examiner{#2}\gdef\@exdep{#3}}
 % Master Specialization
 \newcommand{\specialization}[1]{\gdef\@specialization{#1}}
 
@@ -168,16 +171,16 @@ to: }
         \hspace*{-\tabcolsep}{
             \begin{tabular}{p{4cm}l}
             Main supervisor & \@mainadvisor \\
-                & \@mainaff \\
-                & Department of Earth and Planetary Sciences, ETH Zurich \\    
+                & \@maindep \\
+                & \@mainaff \\    
                 & \\
             Additional supervisor & \@coadvisor \\
+                & \@codep \\
                 & \@coaff \\
-                & Department of Earth and Planetary Sciences, ETH Zurich \\
             \\
             Examiner & \@examiner \\
+                & \@exdep \\
                 & \@exaff \\
-                & Department of Earth and Planetary Sciences, ETH Zurich \\
             \end{tabular}
         }
     \end{minipage}

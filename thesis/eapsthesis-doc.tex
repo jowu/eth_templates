@@ -107,17 +107,49 @@ to be present. Those are all standard and not documented here.
 The class provides commands to fill in the title page:
 \begin{description}
   \item[\texttt{\textbackslash studentid\{\}}] \textbf{Required}. Student ID printed on title page.
-  \item[\texttt{\textbackslash mainadvisor\{<name>\}\{<department>\}}] \textbf{Required}. Main supervisor 
+  \item[\texttt{\textbackslash mainadvisor[<university>]\{<name>\}\{<department>\}}] \textbf{Required}. Main supervisor 
     and department affiliation.
-  \item[\texttt{\textbackslash coadvisor\{<name>\}\{<department>\}}] \textbf{Required}. Additional 
+  \item[\texttt{\textbackslash coadvisor[<university>]\{<name>\}\{<department>\}}] \textbf{Required}. Additional 
     supervisor and department affiliation.
-  \item[\texttt{\textbackslash examiner\{<name>\}\{<department>\}}] \textbf{\texttt{mscthesis} only}. 
+  \item[\texttt{\textbackslash examiner[<university>]\{<name>\}\{<department>\}}] \textbf{\texttt{mscthesis} only}. 
     Examiner and department affiliation.
   \item[\texttt{\textbackslash specialization\{\}}] \textbf{\texttt{mscthesis} only}. Master's program and 
     specialization text used for MSc title page.
 \end{description}
 
 The layout of the title page is fairly rigidly prescribed and shaped by the class accordingly.
+
+\subsection{Usage}
+
+All the advisor commands have arguments for name (and title), the department and optinally the university/institution
+they are from. By default, the optional argument for university/institution is filled in as
+\emph{Department of Earth and Planetary Sciences, ETH Zurich}. 
+All arguments are passed through as plain text with no further formatting. 
+
+\subsubsection*{Examples:}
+
+Some examples are contained in the sample documents \texttt{deaps-thesis-sample-book.tex} and \texttt{deaps-thesis-sample-book.tex}.
+
+\verb|\mainadvisor{Prof. Dr. One \textsc{Professor}}{Institute for Geology}| will be rendered as
+\vspace{1ex}
+
+\begin{tabular}{p{4cm}l}
+Main supervisor & Prof. Dr. One \textsc{Professor} \\
+    & Institute for Geology \\
+    & Department of Earth and Planetary Sciences, ETH Zurich \\    
+\end{tabular}
+\vspace{1ex}
+
+To change the university affiliation, use the optional first argument
+
+\verb|\mainadvisor[NAGRA]{Dr. Some \textsc{Seismologist}}{Department for deep storage}| will be rendered as
+\vspace{1ex}
+
+\begin{tabular}{p{4cm}l}
+Main supervisor & Dr. Some \textsc{Seismologist} \\
+    & Department for deep storage \\
+    & NAGRA \\    
+\end{tabular}
 
 
 \section{Packages loaded by the class}
