@@ -44,17 +44,21 @@ The class implements the following explicit options:
       Select Master's thesis layout and title page wording. When used, the \verb|\specialization| command is 
       displayed on the title page.
       This option is mutually exclusive with \texttt{bscthesis}.
-  \item[\texttt{book}] (default: \textbf{true})
+  \item[\texttt{book}] (default)
     Use a book-like document structure with chapters. When active the class loads the \verb|book| base class 
     with these explicit base-class options: 
     
     \texttt{a4paper, onecolumn, openright, titlepage}.
     The class treats book mode as the two-sided thesis format (defaults to \texttt{twoside} geometry and 
     open-right chapter starts appropriate for printed theses).
-  \item[\texttt{report}] (default: false)
+  \item[\texttt{report}]
     Use a report/article-like structure (sections only). When active the class loads the \texttt{article} 
     base class with these explicit base-class options: \texttt{a4paper, onecolumn, titlepage}.
     The class treats report mode as a \texttt{oneside} (single-sided) format appropriate for section-only documents.
+  \item[\texttt{nohyper}] \emph{Turns off} loading of the \texttt{hyperref} package. No hyperlinks for contents, references, 
+    and bibliography will be generated. 
+    By default, \texttt{hyperref} is loaded and used with the default package options for formatting. To override
+    the formatting, use \verb|\hypersetup| in the preamble of your document.
 \end{description}
 
 \noindent Additional options from base classes that are supported:

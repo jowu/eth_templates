@@ -55,6 +55,12 @@
     \setboolean{@book}{false}
     \setboolean{@report}{true}
 }
+% Turns of hyperlink creation when set to true via the class option.
+\newboolean{@nohyper}
+\setboolean{@nohyper}{false}
+\DeclareOption{nohyper}{
+    \setboolean{@nohyper}{true}
+}
 
 
 % Disable existing options from the book and article classes that are not allowed for theses.
@@ -72,7 +78,7 @@
 } 
 \ProcessOptions \relax
 \typeout{*** Please report bugs, comments, suggestions, and improvements
-  to: }
+to: }
 \typeout{*** Jochen Wuttke <jwuttke@ethz.ch>}
 %%% base class loading
 \ifthenelse{\boolean{@book}}{\LoadClass[a4paper,onecolumn,openright,titlepage]{book}}{}
@@ -81,6 +87,8 @@
 % Load packages required for basic class layout
 % We need to load this before fancyhdr, because it sets head margins etc.
 \RequirePackage[a4paper]{geometry}
+
+\ifthenelse{\boolean{@nohyper}}{}{\RequirePackage{hyperref}}
 
 %%% fancy headers
 \RequirePackage{fancyhdr}
@@ -247,24 +255,33 @@
 %%% use of \phantomsection is required for dealing with hyperref
 %%% package and depends on nohyper option
 
-\renewcommand\listoffigures{%
-% \ifthenelse{\boolean{@hypermode}}{\phantomsection}{}
-    \addcontentsline{toc}{chapter}{List of \listfigurename}%
-    \chapter*{\listfigurename}%
-      \@mkboth{\listfigurename}%
-              {\listfigurename}%
-    \@starttoc{lof}%
+\renewcommand\tableofcontents{%
+    \ifthenelse{\boolean{@nohyper}}{}{\phantomsection}
+    \addcontentsline{toc}{chapter}{\contentsname}%
+    \chapter*{\contentsname
+        \@mkboth{\contentsname}{\contentsname}}%
+    \@starttoc{toc}%
     \cleardoublepage
 }
 
+\renewcommand\listoffigures{%
+    \ifthenelse{\boolean{@nohyper}}{}{\phantomsection}%
+    \addcontentsline{toc}{chapter}{\listfigurename}%
+    \chapter*{\listfigurename}%
+    \@mkboth{\listfigurename}%
+            {\listfigurename}%
+    \@starttoc{lof}%
+    \cleardoublepage%
+}
+
 \renewcommand\listoftables{%
-% \ifthenelse{\boolean{@hypermode}}{\phantomsection}{}
-\addcontentsline{toc}{chapter}{List of \listtablename}%
+    \ifthenelse{\boolean{@nohyper}}{}{\phantomsection}%
+    \addcontentsline{toc}{chapter}{\listtablename}%
     \chapter*{\listtablename}%
-      \@mkboth{%
-          \listtablename}%
-         {\listtablename}%
+    \@mkboth{\listtablename}%
+            {\listtablename}%
     \@starttoc{lot}%
+    \cleardoublepage%
 }
 
 \RequirePackage[style=apa, backend=biber]{biblatex}
@@ -276,12 +293,17 @@
     \cleardoublepage
 }
 
+%%% "Acknowledgments" environment. This will sit on its own page.
+\newenvironment{acknowledgements}{%
+\ifthenelse{\boolean{@nohyper}}{}{\phantomsection}
+\addcontentsline{toc}{chapter}{Acknowledgements}%
+\section*{Acknowledgements\markboth{Acknowledgements}{}}
+}{\cleardoublepage}  %% TODO: only cleardoublepage in twosided
+
 }{}
 
 \ifthenelse{\boolean{@report}}{%
 \newcommand\frontmatter{%
-    % \@mainmatterfalse
-
     \pagestyle{empty}
     \pagenumbering{roman}
     \setcounter{page}{1}
@@ -319,10 +341,19 @@
 %%% use of \phantomsection is required for dealing with hyperref
 %%% package and depends on nohyper option
 
+\renewcommand\tableofcontents{%
+    \ifthenelse{\boolean{@nohyper}}{}{\phantomsection}
+    \addcontentsline{toc}{section}{\contentsname}%
+    \section*{\contentsname
+        \@mkboth{\contentsname}{\contentsname}}%
+    \@starttoc{toc}%
+    \cleardoublepage
+}
+
 \renewcommand\listoffigures{%
-% \ifthenelse{\boolean{@hypermode}}{\phantomsection}{}
-    \addcontentsline{toc}{section}{List of \listfigurename}%
-    \chapter*{\listfigurename}%
+    \ifthenelse{\boolean{@nohyper}}{}{\phantomsection}
+    \addcontentsline{toc}{section}{\listfigurename}%
+    \section*{\listfigurename}%
       \@mkboth{\listfigurename}%
               {\listfigurename}%
     \@starttoc{lof}%
@@ -330,9 +361,9 @@
 }
 
 \renewcommand\listoftables{%
-% \ifthenelse{\boolean{@hypermode}}{\phantomsection}{}
-\addcontentsline{toc}{section}{List of \listtablename}%
-    \chapter*{\listtablename}%
+    \ifthenelse{\boolean{@nohyper}}{}{\phantomsection}
+    \addcontentsline{toc}{section}{\listtablename}%
+    \section*{\listtablename}%
       \@mkboth{%
           \listtablename}%
          {\listtablename}%
@@ -347,12 +378,16 @@
     \oldbib
     \cleardoublepage
 }
+
+%%% "Acknowledgments" environment. This will sit on its own page.
+\newenvironment{acknowledgements}{%
+\ifthenelse{\boolean{@nohyper}}{}{\phantomsection}
+\addcontentsline{toc}{section}{Acknowledgements}%
+\section*{Acknowledgements\markboth{Acknowledgements}{}}
+}{\cleardoublepage}  %% TODO: only cleardoublepage in twosided
 }{}
   
 
 %%% "Abstract" environment. This will sit on its own page.
 
-%%% "Acknowledgments" environment. This will sit on its own page.
-\newenvironment{acknowledgements}{%
-\section*{Acknowledgements\markboth{Acknowledgements}{}}
-}{\cleardoublepage}  %% TODO: only cleardoublepage in twosided
+

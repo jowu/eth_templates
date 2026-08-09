@@ -25,9 +25,9 @@
 % \usepackage{pdflscape}  % to insert landscape pages, e.g. for large tables
 % \usepackage{afterpage}  % to clean up floats and similar. Ignore this if you don't know what it does.
 
-% Enable this package, if you want references and citations to be clickable hyperlinks.
-% The default formatting below enables links, but doesn't format them differently!
-% \usepackage{hyperref}
+% Hyperref is enabled by default, and uses default options. Use the class option 'nohyper' to turn off hyperref.
+% To change formatting behavior, use \hypersetup with appropriate options.
+% This example removes all visible marking from hyperlinks, so it looks clean for a print layout.
 % \hypersetup{colorlinks=false, pdfborder={0 0 0}}
 
 % Math fonts and extra environments for formulas.
@@ -40,8 +40,6 @@
 % Custom commands the improve editing workflows and define some helpers.
 % See documentation for use, remove if in doubt.
 % \usepackage[edit]{commands}
-
-
 
 
 % The class file loads biblatex with apa style. Change the filename to whatever your bib is called.
@@ -87,8 +85,8 @@ language
 
 \tableofcontents 
 
-% \listoffigures %optional
-% \listoftables %optional
+\listoffigures %optional
+\listoftables %optional
 
 \mainmatter
 
