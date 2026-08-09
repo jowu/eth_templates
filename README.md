@@ -3,7 +3,7 @@
 These are templates I use for my work/study at ETH D-EAPS. 
 
 None of these are official ETH templates and should not be construed as such. 
-The ETH and D-EAPS logos may only be used if you are student or are employed at ETH.
+The ETH and D-EAPS logos may only be used if you are a student or are employed at ETH.
 
 ## editing_pkg
 
