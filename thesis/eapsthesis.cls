@@ -177,10 +177,10 @@ to: }
             Additional supervisor & \@coadvisor \\
                 & \@codep \\
                 & \@coaff \\
-            \\
+            \ifthenelse{\boolean{@mscthesis}}{\\
             Examiner & \@examiner \\
                 & \@exdep \\
-                & \@exaff \\
+                & \@exaff \\}{}
             \end{tabular}
         }
     \end{minipage}
