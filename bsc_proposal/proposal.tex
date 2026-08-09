@@ -1,0 +1,115 @@
+\documentclass[12pt]{article}
+\usepackage{setspace}   % required on the titlepage
+\usepackage{graphicx}   % required on the title page
+\usepackage[a4paper]{geometry}   % required for the whole doc
+
+% Optional stuff that is often useful. Uncomment when needed.
+% \usepackage{booktabs}   % Allows to make nicer tables.
+% \usepackage{multirow}   % Merge cells in tables   
+% \usepackage{multicolumn}     
+% \usepackage{subcaption} % Multiple figures and sugfigures.
+% \usepackage{xcolor}     % if you want colored text, e.g. for the title.
+% \usepackage{url}        % helps formatting DOI URLs in the bibliograpy and text 
+% \usepackage{wrapfig}    % custom figure placement, useful, because you are tight on space
+% \usepackage{caption}    % change the look of captions
+% \captionsetup{font=small, labelfont={bf}}   %e.g. make them print a little smaller, and the 'Figure 1' will be bold.
+
+\usepackage[style=apa, backend=biber]{biblatex}
+\addbibresource{bib.bib}
+
+\begin{document}
+
+% The proposal title page starts below. Things to change:
+% * Your name and legi number.
+% * title
+% * advisors
+% * date of submission.
+%
+% The rest is more or less as the examples show and shouldn't be changed. If you like to color the title,
+% use the package xcolor and pick some color you like.
+%%% title page
+\savegeometry{default}
+{\begin{titlepage}%
+    \pagestyle{empty}
+    \newgeometry{inner=2.5cm,outer=2.5cm,top=1cm,bottom=1cm}
+    \pagestyle{empty}
+\noindent\hspace*{-0.8cm}\includegraphics[scale=0.9]{eth-logo-pos.png}
+
+\vfill
+
+\begin{flushleft}
+\Large {\bf Bachelor Proposal}\\
+\vspace{1ex}
+
+\large Bachelor in Earth and Climate Sciences, Geology and Geophysics
+\end{flushleft}
+
+\vfill
+
+\noindent
+\begin{minipage}{\textwidth}%
+    \hspace*{-\tabcolsep}{
+    \begin{tabular}{p{4cm}l}
+        presented by & Random \textsc{Student} \\
+        & 05-981-717 \\
+    \end{tabular}}
+\end{minipage}
+
+\vfill
+
+\begin{flushleft}{
+    \begin{onehalfspace}%
+    \LARGE {\bf Some cool stuff I'm gonna do}
+    \end{onehalfspace}
+}
+\end{flushleft}
+
+\vfill
+\noindent\begin{minipage}{\textwidth}%
+    \hspace*{-\tabcolsep}{
+    \begin{tabular}{p{4cm}l}
+    Main Supervisor & Prof.\ Dr.\ Main \textsc{Advisor} \\
+    & Institute for Geology \\
+    & Department of Earth and Planetary Sciences, ETH Zurich \\
+    \\
+    Co-Examiner & Dr.\ Second \textsc{Advisor}\\
+    & Institute for Geochemistry and Petrology \\
+    & Department of Earth and Planetary Sciences, ETH Zurich \\
+    \end{tabular}}
+\end{minipage}
+
+\vfill
+% \vfill
+\noindent\begin{minipage}{\textwidth}%
+    \hspace*{-\tabcolsep}{
+    \begin{tabular}{p{4cm}l}
+        handed in on & 16.03.2026\\
+    \end{tabular}}
+\end{minipage}
+
+\vfill
+\vfill
+
+\noindent \includegraphics[scale=0.1]{eaps-logo.png}
+\end{titlepage}%
+} %%% end titlepage
+
+% Sets the page size and margins to what is expected to the proposal. Don't touch, unless the requirements change.
+\newgeometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+
+\clearpage  % makes sure Overview starts of a fresh page
+\setcounter{page}{1}  % Makes page numbers start at 1 with the Overview section.
+
+\frenchspacing
+\section{Overview}
+
+\section{Goals}
+
+\section{Methods}
+
+\section{Schedule}
+
+
+\printbibliography
+
+\end{document}
